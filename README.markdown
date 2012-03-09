@@ -15,7 +15,7 @@ Documentation
 
 Documentation is stored in the `Resources/doc/index.md`
 
-[Read the Documentation](https://github.com/Publero/PubleroAppleMobile/blob/master/Resources/doc/index.md)
+[Read the Documentation](https://github.com/Publero/PubleroAppleMobileBundle/blob/master/Resources/doc/index.md)
 
 Installation
 ------------
