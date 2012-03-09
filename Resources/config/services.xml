@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="publero.applemobile.price_manager.class">Publero\AppleMobileBundle\Manager\PriceManager</parameter>
+        <parameter key="publero.applemobile.receipt_verifier.class">Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier</parameter>
+        <parameter key="publero.applemobile.store_receipt_manager.class">Publero\AppleMobileBundle\Entity\StoreReceiptManager</parameter>
+        <parameter key="publero.applemobile.store_receipt_factory.class">Publero\AppleMobileBundle\Factory\StoreReceiptFactory</parameter>
+    </parameters>
+
+    <services>
+        <service id="publero.applemobile.price" class="%publero.applemobile.price_manager.class%" />
+        <service id="publero.applemobile.receipt_factory" class="%publero.applemobile.store_receipt_factory.class%" public="false">
+            <argument>%publero_apple_mobile.store_receipt_class%</argument>
+        </service>
+        
+        <service id="publero.applemobile.storereceipt_manager" class="%publero.applemobile.store_receipt_manager.class%">
+            <call method="setStoreReceiptFactory">
+	            <argument type="service" id="publero.applemobile.receipt_factory" />
+	        </call>
+	        <call method="setEntityManager">
+	           <argument type="service" id="doctrine.orm.entity_manager" />
+	        </call>
+	    </service>
+	    
+        <service id="publero.applemobile.receipt_verifier" class="%publero.applemobile.receipt_verifier.class%">
+            <call method="setStoreReceiptFactory">
+                <argument type="service" id="publero.applemobile.receipt_factory" />
+            </call>
+            <call method="setSandboxMode">
+                <argument>%publero_apple_mobile.sandbox%</argument>
+            </call>
+        </service>
+    </services>
+</container>
