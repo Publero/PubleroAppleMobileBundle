@@ -19,7 +19,7 @@ class PriceManager
 
         $priceMatrixes = array();
         foreach ($currencies as $currency) {
-            $priceMatrixes = $this->getPriceMatrix($currency);
+            $priceMatrixes[$currency] = $this->getPriceMatrix($currency);
         }
 
         return $priceMatrixes;

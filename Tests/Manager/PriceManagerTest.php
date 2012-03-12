@@ -22,8 +22,9 @@ class PriceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $priceMatrixes = $this->manager->getPriceMatrixesForAllCurrencies();
 
-        foreach ($priceMatrixes as $priceMatrix) {
+        foreach ($priceMatrixes as $currency => $priceMatrix) {
             $this->assertInstanceOf('\Publero\AppleMobileBundle\PriceMatrix\PriceMatrix', $priceMatrix);
+            $this->assertEquals($currency, $priceMatrix->getCurrency());
         }
     }
 
