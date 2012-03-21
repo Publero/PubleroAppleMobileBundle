@@ -9,13 +9,14 @@ or for all of them.
 To access one specific tier you have to know currency and tier.
 
 ``` php
-    $currency = 'USD';
-    $tier     = 3;
+<?php
+$currency = 'USD';
+$tier     = 3;
 
-    $priceMatrix = $serviceContainer->get('publero.applemobile.price')->getPriceMatrix($currency);
-    
-    $tierPrice   = $priceMatrix->getPrice($tier);
-    $tierProceed = $priceMatrix->getProceed($tier);
+$priceMatrix = $serviceContainer->get('publero.applemobile.price')->getPriceMatrix($currency);
+
+$tierPrice   = $priceMatrix->getPrice($tier);
+$tierProceed = $priceMatrix->getProceed($tier);
 ```
 
 ## Getting prices of all tiers for given currency
@@ -23,11 +24,12 @@ To access one specific tier you have to know currency and tier.
 If you want to get all prices of given currency you have to call getPrices on PriceMatrix instead of getPrice.
 
 ``` php
-    $currency = 'USD';
+<?php
+$currency = 'USD';
 
-    $priceMatrix = $serviceContainer->get('publero.applemobile.price')->getPriceMatrix($currency);
-    
-    $prices   = $priceMatrix->getPrices();
+$priceMatrix = $serviceContainer->get('publero.applemobile.price')->getPriceMatrix($currency);
+
+$prices   = $priceMatrix->getPrices();
 ```
 
 ## Getting prices of all tiers for all currencies
@@ -36,10 +38,11 @@ PriceMatrixes are extended from abstract and therefore you can access same metho
 you can see how to access prices of all tiers for all price matrixes
 
 ``` php
-    $priceMatrixes = $serviceContainer->get('publero.applemobile.price')->getPriceMatrixesForAllCurrencies();
-    
-    $prices = array();
-    foreach ($priceMatrixes as $priceMatrix) {
-        $prices[$priceMatrix->getCurrency()] = $priceMatrix->getPrices();
-    }
+<?php
+$priceMatrixes = $serviceContainer->get('publero.applemobile.price')->getPriceMatrixesForAllCurrencies();
+
+$prices = array();
+foreach ($priceMatrixes as $priceMatrix) {
+    $prices[$priceMatrix->getCurrency()] = $priceMatrix->getPrices();
+}
 ``` 

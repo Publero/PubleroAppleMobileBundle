@@ -30,7 +30,7 @@ class ReceiptVerifier extends StoreReceiptFactoryAware
     /**
      * @return bool
      */
-    public function getSandboxMode()
+    public function isSandboxMode()
     {
         return $this->sandboxMode;
     }
@@ -107,7 +107,7 @@ class ReceiptVerifier extends StoreReceiptFactoryAware
      */
     public function getVerificationUrl()
     {
-        return $this->verificationUrls[$this->getSandboxMode()];
+        return $this->verificationUrls[$this->isSandboxMode()];
     }
 
     /**
