@@ -3,6 +3,7 @@ namespace Publero\AppleMobileBundle\Entity;
 
 use Publero\AppleMobileBundle\Model\StoreReceipt;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @author mhlavac
@@ -62,4 +63,12 @@ abstract class AbstractStoreReceipt extends StoreReceipt
      * @ORM\Column(name="applicationversion", type="string")
      */
     protected $applicationVersion;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdate", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    protected $createDate;
 }

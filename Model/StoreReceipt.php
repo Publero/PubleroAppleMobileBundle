@@ -60,6 +60,11 @@ class StoreReceipt
     protected $applicationVersion;
 
     /**
+     * @var \DateTime
+     */
+    private $createDate;
+
+    /**
      * @return int
      */
     public function getQuantity()
@@ -203,4 +208,16 @@ class StoreReceipt
         $this->applicationVersion = $applicationVersion;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    public function setCreateDate(\DateTime $createDate)
+    {
+        $this->createDate = $createDate;
+    }
 }
