@@ -1,0 +1,6 @@
+parameters:
+    publero_applemobile.price_manager.class: Publero\AppleMobileBundle\Manager\PriceManager
+    
+services:
+    publero_applemobile.price:
+        class: %publero_applemobile.price_manager.class%

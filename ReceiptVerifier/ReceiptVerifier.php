@@ -15,45 +15,36 @@ use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidResponseData;
 class ReceiptVerifier extends StoreReceiptFactoryAware
 {
     /**
-     * @var string[]
+     * @var string
      */
-    private $verificationUrls = array(
-        0 => 'https://buy.itunes.apple.com/verifyReceipt',
-        1 => 'https://sandbox.itunes.apple.com/verifyReceipt'
-    );
+    private $verificationUrl;
 
     /**
-     * @var bool
+     * @param string $verificationUrl
      */
-    private $sandboxMode = false;
-
-    /**
-     * @return bool
-     */
-    public function isSandboxMode()
+    public function __construct($verificationUrl)
     {
-        return $this->sandboxMode;
+        $this->verificationUrl = $verificationUrl;
     }
 
     /**
-     * @param bool $sandboxMode
+     * @return string
      */
-    public function setSandboxMode($sandboxMode)
+    public function getVerificationUrl()
     {
-        $this->sandboxMode = $sandboxMode == true;
+        return $this->verificationUrl;
     }
 
     /**
+     * @param string $receipt
      * @throws InvalidResponseData
      * @throws InvalidReceipt
-     *
-     * @param string $receipt
      * @return StoreReceipt
      */
-    public function getStoreReceipt($receipt)
+    public function validateStoreReceipt($receipt)
     {
-        $postData     = $this->preparePostData($receipt);
-        $responseData = $this->makeRequest($postData);
+        $connector = new VerificationConnector();
+        $connector->makeRequest($receipt);
         $data         = $this->decodeReponseData($responseData);
 
         $storeReceipt = $this->getStoreReceiptFactory()->createStoreReceipt();
@@ -68,46 +59,6 @@ class ReceiptVerifier extends StoreReceiptFactoryAware
         $storeReceipt->setApplicationVersion($data->bvrs);
 
         return $storeReceipt;
-    }
-
-    /**
-     * @param string $receipt
-     * @return string
-     */
-    private function preparePostData($receipt)
-    {
-        return json_encode(array('receipt-data' => $receipt));
-    }
-
-    /**
-     * @param string $postData
-     * @return array
-     */
-    private function makeRequest($postData)
-    {
-        $curl = curl_init($this->getVerificationUrl());
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
-
-        $response     = curl_exec($curl);
-        $errorNumber  = curl_errno($curl);
-        $errorMessage = curl_error($curl);
-        curl_close($curl);
-
-        if ($errorNumber != 0) {
-            throw new \RuntimeException($errorMessage, $errorNumber);
-        }
-
-        return $response;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVerificationUrl()
-    {
-        return $this->verificationUrls[$this->isSandboxMode()];
     }
 
     /**

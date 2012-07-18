@@ -12,24 +12,11 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->verifier = new ReceiptVerifier();
+        $this->verifier = new ReceiptVerifier('http://www.example.com/');
     }
 
-    public function testIsSandboxMode()
+    public function testGetVerificationUrl()
     {
-        $verifier = $this->verifier;
-
-        $this->assertFalse($verifier->isSandboxMode());
-    }
-
-    public function testSetSandboxMode()
-    {
-        $verifier = $this->verifier;
-
-        $verifier->setSandboxMode(true);
-        $this->assertTrue($verifier->isSandboxMode());
-
-        $verifier->setSandboxMode(false);
-        $this->assertFalse($verifier->isSandboxMode());
+        $this->assertEquals('http://www.example.com/', $this->verifier->getVerificationUrl());
     }
 }

@@ -15,17 +15,19 @@ Documentation
 
 Documentation is stored in the `Resources/doc/index.md`
 
-[Read the Documentation](https://github.com/Publero/PubleroAppleMobileBundle/blob/master/Resources/doc/index.md)
+[Read the Documentation](Resources/doc/index.md)
 
 Installation
 ------------
+
+Steps how to install this bundle are located in [Getting started](Resources/doc/index.md).
 
 License
 -------
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-    Resources/meta/LICENSE
+    [Resources/meta/LICENSE](Resources/doc/index.md)
     
 About
 -----

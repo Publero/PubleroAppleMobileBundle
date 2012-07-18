@@ -1,7 +1,7 @@
 <?php
 namespace Publero\AppleMobileBundle\Factory;
 
-abstract class StoreReceiptFactoryAware
+class StoreReceiptFactoryAware
 {
     /**
      * @var StoreReceiptFactory
@@ -9,7 +9,7 @@ abstract class StoreReceiptFactoryAware
     private $storeReceiptFactory;
 
     /**
-     * @param StoreReceiptFactory $storeReceiptFactory
+     * @param StoreReceiptFactj ory $storeReceiptFactory
      */
     public function setStoreReceiptFactory(StoreReceiptFactory $storeReceiptFactory)
     {
