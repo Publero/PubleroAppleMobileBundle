@@ -2,84 +2,60 @@
 namespace Publero\AppleMobileBundle\ReceiptVerifier;
 
 use Publero\AppleMobileBundle\Factory\StoreReceiptFactoryAware;
-use Publero\AppleMobileBundle\Entity\StoreReceipt;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidResponseData;
 
-/**
- * @author mhlavac
- *
- * Most of the code was taken from great article on phpriot:
- * http://www.phpriot.com/articles/verifying-app-store-receipts-php-curl
- */
 class ReceiptVerifier extends StoreReceiptFactoryAware
 {
     /**
-     * @var string
+     * @var VerificationConnector
      */
-    private $verificationUrl;
+    private $connector;
 
     /**
-     * @param string $verificationUrl
+     * @var VerificationDataMapper
      */
-    public function __construct($verificationUrl)
-    {
-        $this->verificationUrl = $verificationUrl;
-    }
+    private $dataMapper;
 
-    /**
-     * @return string
-     */
-    public function getVerificationUrl()
+    public function __construct(VerificationConnector $connector, VerificationDataMapper $dataMapper)
     {
-        return $this->verificationUrl;
+        $this->connector = $connector;
+        $this->dataMapper = $dataMapper;
     }
 
     /**
      * @param string $receipt
-     * @throws InvalidResponseData
-     * @throws InvalidReceipt
-     * @return StoreReceipt
+     * @return bool
      */
-    public function validateStoreReceipt($receipt)
+    public function isReceiptDataValid($receiptData)
     {
-        $connector = new VerificationConnector();
-        $connector->makeRequest($receipt);
-        $data         = $this->decodeReponseData($responseData);
+        $responseData = $this->connector->makeRequest($receiptData);
 
-        $storeReceipt = $this->getStoreReceiptFactory()->createStoreReceipt();
-        $storeReceipt->setQuantity($data->quantity);
-        $storeReceipt->setProductId($data->product_id);
-        $storeReceipt->setTransactionId($data->transaction_id);
-        $storeReceipt->setPurchaseDate(new \DateTime($data->purchase_date));
-        $storeReceipt->setOriginalTransactionId($data->original_transaction_id);
-        $storeReceipt->setOriginalPurchaseDate(new \DateTime($data->original_purchase_date));
-        $storeReceipt->setItemId($data->item_id);
-        $storeReceipt->setApplicationBundleId($data->bid);
-        $storeReceipt->setApplicationVersion($data->bvrs);
-
-        return $storeReceipt;
+        return $this->isStoreReceiptValid($responseData);
     }
 
     /**
-     * @throws InvalidResponseData
+     * @param string $receiptData
      * @throws InvalidReceipt
-     *
-     * @param string $reponseData
-     * @return StoreReceipt
+     * @return \Publero\AppleMobileBundle\Model\StoreReceipt
      */
-    private function decodeReponseData($responseData)
+    public function getStoreReceipt($receiptData)
     {
-        $data = json_decode($responseData);
+        $responseData = $this->connector->makeRequest($receiptData);
 
-        if (!is_object($data)) {
-            throw new InvalidResponseData();
+        if (!$this->isStoreReceiptValid($responseData)) {
+            throw new InvalidReceipt($receiptData);
         }
 
-        if (!isset($data->status) || $data->status != 0) {
-            throw new InvalidReceipt();
-        }
+        return $this->dataMapper->createStoreReceiptFromObject($responseData);
+    }
 
-        return $data->receipt;
+    /**
+     * @param \stdClass $responseData
+     * @return bool
+     */
+    private function isStoreReceiptValid(\stdClass $responseData)
+    {
+        return $responseData->status === 0;
     }
 }

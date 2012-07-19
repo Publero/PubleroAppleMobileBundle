@@ -2,6 +2,8 @@
 namespace Publero\AppleMobileBundle\Tests\ReceiptVerifier;
 
 use Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier;
+use Publero\AppleMobileBundle\ReceiptVerifier\VerificationConnector;
+use Publero\AppleMobileBundle\ReceiptVerifier\VerificationDataMapper;
 
 class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,13 +12,38 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
      */
     private $verifier;
 
+    /**
+     * @var VerificationConnector
+     */
+    private $connector;
+
     public function setUp()
     {
-        $this->verifier = new ReceiptVerifier('http://www.example.com/');
+        $this->connector = $this->getMock('Publero\AppleMobileBundle\ReceiptVerifier\VerificationConnector', null, array('http://www.example.com/'));
+        $this->connector
+            ->expects($this->any())
+            ->method('makeRequest')
+            ->will($this->returnValue(''))
+        ;
+
+        $dataMapper = new VerificationDataMapper();
+
+        $this->verifier = new ReceiptVerifier($this->connector, $dataMapper);
     }
 
-    public function testGetVerificationUrl()
+    private function getConnectorMock()
     {
-        $this->assertEquals('http://www.example.com/', $this->verifier->getVerificationUrl());
+    }
+
+    public function testIsReceiptDataValid()
+    {
+    }
+
+    public function testGetStoreReceipt()
+    {
+    }
+
+    public function testGetStoreReceiptThrowsExceptionIfReceiptDataIsInvalid()
+    {
     }
 }

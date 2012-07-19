@@ -22,21 +22,13 @@ class VerificationConnector
     }
 
     /**
-     * @return string
-     */
-    public function getVerificationUrl()
-    {
-        return $this->verificationUrl;
-    }
-
-    /**
-     * @param string $receipt
+     * @param string $receiptData
      * @throws \RuntimeException
-     * @return array
+     * @return \stdClass
      */
-    public function makeRequest($receipt)
+    public function makeRequest($receiptData)
     {
-        $curl = $this->initCurl($receipt);
+        $curl = $this->initCurl($receiptData);
 
         $response     = curl_exec($curl);
         $errorNumber  = curl_errno($curl);
@@ -51,27 +43,35 @@ class VerificationConnector
     }
 
     /**
-     * @param string $receipt
+     * @param string $receiptData
      * @return resource curl
      */
-    private function initCurl($receipt)
+    private function initCurl($receiptData)
     {
         $curl = curl_init($this->getVerificationUrl());
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $this->prepareReceipt($receipt));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $this->prepareReceiptData($receiptData));
 
         return $curl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVerificationUrl()
+    {
+        return $this->verificationUrl;
     }
 
     /**
      * @param string
      * @return string
      */
-    private function prepareReceipt($receipt)
+    private function prepareReceiptData($receiptData)
     {
-        return json_encode(array('receipt-data' => $receipt));
+        return json_encode(array('receipt-data' => $receiptData));
     }
 
     /**
