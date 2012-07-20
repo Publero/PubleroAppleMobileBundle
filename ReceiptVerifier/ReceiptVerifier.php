@@ -1,11 +1,12 @@
 <?php
 namespace Publero\AppleMobileBundle\ReceiptVerifier;
 
-use Publero\AppleMobileBundle\Factory\StoreReceiptFactoryAware;
+use Publero\AppleMobileBundle\Connector\ReceiptDataConnectorInterface;
+use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidResponseData;
 
-class ReceiptVerifier extends StoreReceiptFactoryAware
+class ReceiptVerifier
 {
     /**
      * @var VerificationConnector
@@ -13,14 +14,14 @@ class ReceiptVerifier extends StoreReceiptFactoryAware
     private $connector;
 
     /**
-     * @var VerificationDataMapper
+     * @var StoreReceiptFactory
      */
-    private $dataMapper;
+    private $storeReceiptFactory;
 
-    public function __construct(VerificationConnector $connector, VerificationDataMapper $dataMapper)
+    public function __construct(ReceiptDataConnectorInterface $connector, StoreReceiptFactory $storeReceiptFactory)
     {
         $this->connector = $connector;
-        $this->dataMapper = $dataMapper;
+        $this->storeReceiptFactory = $storeReceiptFactory;
     }
 
     /**
@@ -47,7 +48,7 @@ class ReceiptVerifier extends StoreReceiptFactoryAware
             throw new InvalidReceipt($receiptData);
         }
 
-        return $this->dataMapper->createStoreReceiptFromObject($responseData);
+        return $this->storeReceiptFactory->createStoreReceiptFromObject($responseData);
     }
 
     /**
