@@ -1,7 +1,7 @@
 <?php
 namespace Publero\AppleMobileBundle\Tests\Connector;
 
-abstract class AbstractReceiptDataConnectorTest
+abstract class AbstractReceiptDataConnectorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Publero\AppleMobileBundle\Connector\ReceiptDataConnectorInterface
@@ -10,7 +10,7 @@ abstract class AbstractReceiptDataConnectorTest
 
     public function setUp()
     {
-        $this->dataConnector = $this->createDataConncetor;
+        $this->dataConnector = $this->createDataConnector();
     }
 
     /**
@@ -20,7 +20,7 @@ abstract class AbstractReceiptDataConnectorTest
 
     public function testDoRequest()
     {
-        $this->dataConnector->doRequest('test_data');
+        $this->dataConnector->doRequest('example_test');
     }
 
     /**
