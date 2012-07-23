@@ -12,17 +12,18 @@ class ReceiptDataCurlConnectorTest extends AbstractReceiptDataConnectorTest
         return new ReceiptDataCurlConnector($this->verificationUrl);
     }
 
-    public function doRequestThrowsExceptionIfCannotConnectToRemoteHost()
+    public function testDoRequestThrowsExceptionIfCannotConnectToRemoteHost()
     {
+        $this->markTestIncomplete('I need to find way how to test connection to remote host');
     }
 
     /**
      * @expectedException \RuntimeException
      * @expectedExceptionMessage Empty response
      */
-    public function doRequestThrowsExceptionIfResponseIsEmpty()
+    public function testDoRequestThrowsExceptionIfResponseIsEmpty()
     {
-        $this->getDataConnector()->doRequest('test');
+        $this->markTestIncomplete('I need to find way how to make curl to return empty result');
     }
 
     public function testGetVerificationUrl()

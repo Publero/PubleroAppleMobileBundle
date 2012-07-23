@@ -30,8 +30,6 @@ class ReceiptDataCurlConnector implements ReceiptDataConnectorInterface
         $errorMessage = \curl_error($curl);
         \curl_close($curl);
 
-        var_dump($response);die;
-
         if ($errorNumber != 0) {
             throw new \RuntimeException($errorMessage, $errorNumber);
         }
