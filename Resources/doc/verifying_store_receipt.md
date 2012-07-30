@@ -1,22 +1,25 @@
 Verifying Store Receipt
 =======================
 
-Work in progress. I am currently working on refactoring this code. This documentation will be updated when the code will be refactored and tested.
+Work in progress on documentation. I am currently working on unit tests as i have to somehow test connection to appstore verification server.
+Meantime, here are some code snippets:
 
-Code snippet used for verification of payments.
+Code snippet for verifying specific store receipt:
 
 ``` php
 <?php
-try {
-    $verifier = $this->get('publero.applemobile.receipt_verifier');
-    $storeReceipt = $verifier->getStoreReceipt($receipt);
-    $this->get('publero.applemobile.storereceipt_manager')->persistStoreReceipt($storeReceipt);
-    
-} catch (\Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt $exception) {
-    $this->get('logger')->addInfo('Invalid receipt: ' . $receipt, array('mobile', 'ios', 'payment'));
-    $this->printValueAndExit('invalid_receipt');
-    
-} catch (Exception $exception) {
-    $this->get('logger')->addCritical('Unable to verify inAppPurchase: ' . $receipt, array('mobile', 'ios', 'payment'));
-}
+    $verifier = $container->get('publero_apple_mobile.store_receipt.verifier');
+    $verifier->isReceiptDataValid($receiptData);
+```
+
+Code snippet to obtain all information about specific store receipt:
+
+``` php
+<?php
+    $verifier = $container->get('publero_apple_mobile.store_receipt.verifier');
+    try {
+        $receipt = $verifier->getStoreReceipt($receiptData);
+    } catch (InvalidReceipt $exception) {
+        // Handle invalid receipt, for example with monolog critical log.
+    }
 ```
