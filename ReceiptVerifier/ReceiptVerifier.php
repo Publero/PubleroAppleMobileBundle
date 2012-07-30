@@ -45,7 +45,7 @@ class ReceiptVerifier
         $responseData = $this->connector->makeRequest($receiptData);
 
         if (!$this->isStoreReceiptValid($responseData)) {
-            throw new InvalidReceipt($receiptData);
+            throw new InvalidReceipt('Given receipt is not valid: ' . $responseData->status . ': ' . $this->getStatusMessage($responseData->status));
         }
 
         return $this->storeReceiptFactory->createStoreReceiptFromObject($responseData);
@@ -62,10 +62,9 @@ class ReceiptVerifier
 
     /**
      * @param int $status
-     * @throws \OutOfBoundsException
      * @return string
      */
-    public function getStatusMessage($status)
+    private function getStatusMessage($status)
     {
         $messages = array(
             21000 => 'The App Store could not read the JSON object you provided.',
@@ -79,7 +78,7 @@ class ReceiptVerifier
         );
 
         if (!isset($messages[$status])) {
-            throw new \OutOfBoundsException('Given status "' . $status . '" is not defined');
+            return 'Unkown status';
         }
 
         return $messages[$status];
