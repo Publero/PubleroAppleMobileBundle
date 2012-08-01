@@ -23,10 +23,6 @@ class StoreReceiptFactory
      */
     public function createStoreReceiptFromObject(\stdClass $data)
     {
-        if (!is_object($data)) {
-            throw new InvalidResponseData();
-        }
-
         $storeReceipt = $this->createStoreReceipt();
         $storeReceipt->setQuantity($data->quantity);
         $storeReceipt->setProductId($data->product_id);

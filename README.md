@@ -15,7 +15,7 @@ Documentation
 
 Documentation is stored in the `Resources/doc/index.md`
 
-[Read the Documentation](Resources/doc/index.md)
+[Read the Documentation](https://github.com/Publero/PubleroAppleMobileBundle/blob/master/Resources/doc/index.md)
 
 Installation
 ------------
@@ -37,7 +37,8 @@ We really like Symfony2 framework and the community around it. Releasing a bundl
 Bugs and requests
 -----------------
 
-Feel free to report bug or make a pull request. If you want something new in a bundle we would like to know about it.
+Feel free to report bugs, request a feature or make a pull request. If you want something new in a bundle we would like to know about it.
+Make sure that you've checked already opened issues as your bug or feature request might already be in issue list.
 
 Offical Trello board for
 ------------------------

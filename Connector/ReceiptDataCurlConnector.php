@@ -1,6 +1,9 @@
 <?php
 namespace Publero\AppleMobileBundle\Connector;
 
+use Publero\AppleMobileBundle\Connector\CurlErrorException\EmptyResponseException;
+use Publero\AppleMobileBundle\Connector\CurlErrorException\CurlErrorException;
+
 class ReceiptDataCurlConnector implements ReceiptDataConnectorInterface
 {
     /**
@@ -31,11 +34,11 @@ class ReceiptDataCurlConnector implements ReceiptDataConnectorInterface
         \curl_close($curl);
 
         if ($errorNumber != 0) {
-            throw new \RuntimeException($errorMessage, $errorNumber);
+            throw new CurlErrorException($errorMessage, $errorNumber);
         }
 
         if (empty($response)) {
-            throw new \RuntimeException('Empty response');
+            throw new EmptyResponseException('Empty response');
         }
 
         return $this->decodeResponse($response);

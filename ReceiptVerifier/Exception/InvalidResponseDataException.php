@@ -1,7 +1,7 @@
 <?php
 namespace Publero\AppleMobileBundle\ReceiptVerifier\Exception;
 
-class InvalidResponseData extends \RuntimeException
+class InvalidResponseDataException extends \RuntimeException
 {
     public function __construct()
     {

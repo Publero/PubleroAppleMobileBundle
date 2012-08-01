@@ -1,14 +1,20 @@
 <?php
 namespace Publero\AppleMobileBundle\Entity;
 
+use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\Factory\StoreReceiptFactoryAware;
 
-class StoreReceiptManager extends StoreReceiptFactoryAware
+class StoreReceiptManager implements StoreReceiptFactoryAware
 {
     /**
      * @var \Doctrine\ORM\EntityManager $entityManager
      */
     private $entityManager;
+
+    /**
+     * @var StoreReceiptFactory
+     */
+    private $storeReceiptFactory;
 
     /**
      * @return AbstractStoreReceipt
@@ -18,6 +24,19 @@ class StoreReceiptManager extends StoreReceiptFactoryAware
         $storeReceipt = $this->getStoreReceiptFactory()->createStoreReceipt();
 
         return $storeReceipt;
+    }
+
+    public function getStoreReceiptFactory()
+    {
+        return $this->storeReceiptFactory;
+    }
+
+    /**
+     * @param StoreReceiptFactory $storeReceiptFactory
+     */
+    public function setStoreReceiptFactory(StoreReceiptFactory $storeReceiptFactory)
+    {
+        $this->storeReceiptFactory = $storeReceiptFactory;
     }
 
     /**
@@ -61,7 +80,7 @@ class StoreReceiptManager extends StoreReceiptFactoryAware
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    protected function getEntityManager()
+    public function getEntityManager()
     {
         return $this->entityManager;
     }

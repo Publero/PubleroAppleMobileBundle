@@ -46,7 +46,6 @@ class PriceManagerTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-
     public function testGetPriceMatrixReturnsPriceMatrix()
     {
         $currencies = $this->manager->getCurrencies();

@@ -5,6 +5,9 @@ use Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector;
 
 class ReceiptDataCurlConnectorTest extends AbstractReceiptDataConnectorTest
 {
+    /**
+     * @var string
+     */
     private $verificationUrl = 'https://sandbox.itunes.apple.com/verifyReceipt';
 
     protected function createDataConnector()

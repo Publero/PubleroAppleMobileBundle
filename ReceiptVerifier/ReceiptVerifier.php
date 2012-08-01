@@ -1,6 +1,8 @@
 <?php
 namespace Publero\AppleMobileBundle\ReceiptVerifier;
 
+use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceiptException;
+
 use Publero\AppleMobileBundle\Connector\ReceiptDataConnectorInterface;
 use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt;
@@ -9,7 +11,7 @@ use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidResponseData;
 class ReceiptVerifier
 {
     /**
-     * @var VerificationConnector
+     * @var ReceiptDataConnectorInterface
      */
     private $connector;
 
@@ -25,14 +27,14 @@ class ReceiptVerifier
     }
 
     /**
-     * @param string $receipt
+     * @param string $receiptData
      * @return bool
      */
     public function isReceiptDataValid($receiptData)
     {
-        $responseData = $this->connector->makeRequest($receiptData);
+        $responseData = $this->connector->doRequest($receiptData);
 
-        return $this->isStoreReceiptValid($responseData);
+        return $this->isResponseDataValid($responseData);
     }
 
     /**
@@ -42,10 +44,10 @@ class ReceiptVerifier
      */
     public function getStoreReceipt($receiptData)
     {
-        $responseData = $this->connector->makeRequest($receiptData);
+        $responseData = $this->connector->doRequest($receiptData);
 
-        if (!$this->isStoreReceiptValid($responseData)) {
-            throw new InvalidReceipt('Given receipt is not valid: ' . $responseData->status . ': ' . $this->getStatusMessage($responseData->status));
+        if (!$this->isResponseDataValid($responseData)) {
+            throw new InvalidReceiptException('Given receipt is not valid: ' . $responseData->status . ': ' . $this->getStatusMessage($responseData->status));
         }
 
         return $this->storeReceiptFactory->createStoreReceiptFromObject($responseData);
@@ -55,7 +57,7 @@ class ReceiptVerifier
      * @param \stdClass $responseData
      * @return bool
      */
-    private function isStoreReceiptValid(\stdClass $responseData)
+    private function isResponseDataValid(\stdClass $responseData)
     {
         return $responseData->status === 0;
     }
