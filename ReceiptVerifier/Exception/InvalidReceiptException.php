@@ -3,8 +3,23 @@ namespace Publero\AppleMobileBundle\ReceiptVerifier\Exception;
 
 class InvalidReceiptException extends \RuntimeException
 {
-    public function __construct()
+    /**
+     * @var int
+     */
+    private $statusCode;
+
+    /**
+     * @param int $statusCode
+     */
+    public function __construct($statusCode)
     {
-        parent::__construct('Invalid receipt');
+        parent::__construct('Receipt is not valid: ' . $statusCode);
+
+        $this->statusCode = $statusCode;
+    }
+
+    public function getStatusCode()
+    {
+        return $this->statusCode;
     }
 }

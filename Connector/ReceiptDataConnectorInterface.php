@@ -5,7 +5,7 @@ interface ReceiptDataConnectorInterface
 {
     /**
      * @param string $receiptData
-     * @throws \RuntimeException
+     * @throws \Publero\AppleMobileBundle\Connector\CurlErrorException\EmptyResponseException
      * @return \stdClass
      */
     public function doRequest($receiptData);

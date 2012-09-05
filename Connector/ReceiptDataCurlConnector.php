@@ -24,6 +24,12 @@ class ReceiptDataCurlConnector implements ReceiptDataConnectorInterface
         $this->verificationUrl = $verificationUrl;
     }
 
+    /**
+     * @param string $receiptData
+     * @throws CurlErrorException
+     * @throws EmptyResponseException
+     * @return \stdClass
+     */
     public function doRequest($receiptData)
     {
         $curl = $this->initCurl($receiptData);

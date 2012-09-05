@@ -1,4 +1,4 @@
-### 1.1.0  (2012-07-30)
+### 0.2.0  (2012-07-30)
 
 * Added more unit tests
 * Refactored verification code
@@ -7,6 +7,6 @@
 * Updated documentation
 * Added composer.json
 
-### 1.0.0  (2012-04-25)
+### 0.1.0  (2012-04-25)
 
 * Initial release

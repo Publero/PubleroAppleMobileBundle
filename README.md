@@ -39,8 +39,3 @@ Bugs and requests
 
 Feel free to report bugs, request a feature or make a pull request. If you want something new in a bundle we would like to know about it.
 Make sure that you've checked already opened issues as your bug or feature request might already be in issue list.
-
-Offical Trello board for
-------------------------
-
-https://trello.com/board/publeroapplemobile/500a91a40c805e475b11964d
