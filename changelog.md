@@ -1,4 +1,4 @@
-### 0.2.0  (2012-07-30)
+### 0.2.0  (2012-09-xx)
 
 * Added more unit tests
 * Refactored verification code

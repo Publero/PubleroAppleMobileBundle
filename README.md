@@ -22,6 +22,11 @@ Installation
 
 Steps how to install this bundle are located in [Getting started](Resources/doc/index.md).
 
+Versioning
+----------
+
+This bundle uses [semantic versioning](http://semver.org/).
+
 License
 -------
 
