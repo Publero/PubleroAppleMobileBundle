@@ -1,10 +1,10 @@
 <?php
 namespace Publero\AppleMobileBundle\ReceiptVerifier\Exception;
 
-class InvalidReceipt extends \RuntimeException
+class InvalidResponseDataException extends \RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('Invalid receipt');
+        parent::__construct('Invalid response data');
     }
 }

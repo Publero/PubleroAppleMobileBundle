@@ -1,6 +1,7 @@
 <?php
 namespace Publero\AppleMobileBundle\Tests\ReceiptVerifier;
 
+use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier;
 
 class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
@@ -10,26 +11,105 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
      */
     private $verifier;
 
+    /**
+     * @var Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector
+     */
+    private $connector;
+
     public function setUp()
     {
-        $this->verifier = new ReceiptVerifier();
+        $this->connector = $this->getConnectorMock();
+        $storeReceiptFactory = new StoreReceiptFactory('\Publero\AppleMobileBundle\Model\StoreReceipt');
+
+        $this->verifier = new ReceiptVerifier($this->connector, $storeReceiptFactory);
     }
 
-    public function testIsSandboxMode()
+    /**
+     * @return VerificationConnector
+     */
+    private function getConnectorMock()
     {
-        $verifier = $this->verifier;
+        $connector = $this->getMock('Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector', array('doRequest'), array('http://www.example.com/'));
 
-        $this->assertFalse($verifier->isSandboxMode());
+        return $connector;
     }
 
-    public function testSetSandboxMode()
+    public function testIsReceiptDataValidReturnsTrueIfResponseDataIsValid()
     {
-        $verifier = $this->verifier;
+        $responseData = new \stdClass();
+        $responseData->status = 0;
 
-        $verifier->setSandboxMode(true);
-        $this->assertTrue($verifier->isSandboxMode());
+        $this->connector
+            ->expects($this->any())
+            ->method('doRequest')
+            ->will($this->returnValue($responseData))
+        ;
 
-        $verifier->setSandboxMode(false);
-        $this->assertFalse($verifier->isSandboxMode());
+        $this->assertTrue($this->verifier->isReceiptDataValid('test_receipt'));
+    }
+
+    public function testIsReceiptDataValidReturnsFalseIfResponseDataIsInvalid()
+    {
+        $responseData = new \stdClass();
+        $responseData->status = 1;
+
+        $this->connector
+            ->expects($this->any())
+            ->method('doRequest')
+            ->will($this->returnValue($responseData))
+        ;
+
+        $this->assertFalse($this->verifier->isReceiptDataValid('test_receipt'));
+    }
+
+    public function testGetStoreReceipt()
+    {
+        $responseData = new \stdClass();
+        $responseData->status = 0;
+        $responseData->quantity = 1;
+        $responseData->product_id = 'example_product';
+        $responseData->transaction_id = 'example_transaction';
+        $responseData->purchase_date = '2012-07-20 10:00:00';
+        $responseData->original_transaction_id = 'example_original_transaction';
+        $responseData->original_purchase_date = '2012-07-20 11:00:00';
+        $responseData->item_id = 'example_item';
+        $responseData->bid = 'bundle';
+        $responseData->bvrs = '1.0.0';
+
+        $this->connector
+            ->expects($this->any())
+            ->method('doRequest')
+            ->will($this->returnValue($responseData))
+        ;
+
+        $storeReceipt = $this->verifier->getStoreReceipt('test_receipt');
+
+        $this->assertInstanceOf('\Publero\AppleMobileBundle\Model\StoreReceipt', $storeReceipt);
+        $this->assertEquals($responseData->quantity, $storeReceipt->getQuantity());
+        $this->assertEquals($responseData->product_id, $storeReceipt->getProductId());
+        $this->assertEquals($responseData->transaction_id, $storeReceipt->getTransactionId());
+        $this->assertEquals($responseData->purchase_date, $storeReceipt->getPurchaseDate()->format('Y-m-d H:i:s'));
+        $this->assertEquals($responseData->original_transaction_id, $storeReceipt->getOriginalTransactionId());
+        $this->assertEquals($responseData->original_purchase_date, $storeReceipt->getOriginalPurchaseDate()->format('Y-m-d H:i:s'));
+        $this->assertEquals($responseData->item_id, $storeReceipt->getItemId());
+        $this->assertEquals($responseData->bid, $storeReceipt->getApplicationBundleId());
+        $this->assertEquals($responseData->bvrs, $storeReceipt->getApplicationVersion());
+    }
+
+    /**
+     * @expectedException Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceiptException
+     */
+    public function testGetStoreReceiptThrowsExceptionIfReceiptDataIsInvalid()
+    {
+        $responseData = new \stdClass();
+        $responseData->status = 1;
+
+        $this->connector
+            ->expects($this->any())
+            ->method('doRequest')
+            ->will($this->returnValue($responseData))
+        ;
+
+        $this->verifier->getStoreReceipt('invalid_receipt');
     }
 }

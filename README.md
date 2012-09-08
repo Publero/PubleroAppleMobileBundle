@@ -20,12 +20,19 @@ Documentation is stored in the `Resources/doc/index.md`
 Installation
 ------------
 
+Steps how to install this bundle are located in [Getting started](Resources/doc/index.md).
+
+Versioning
+----------
+
+This bundle uses [semantic versioning](http://semver.org/).
+
 License
 -------
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-    Resources/meta/LICENSE
+    [Resources/meta/LICENSE](Resources/doc/index.md)
     
 About
 -----
@@ -35,4 +42,5 @@ We really like Symfony2 framework and the community around it. Releasing a bundl
 Bugs and requests
 -----------------
 
-Feel free to report bug or make a pull request. If you want something new in a bundle we would like to know about it.
+Feel free to report bugs, request a feature or make a pull request. If you want something new in a bundle we would like to know about it.
+Make sure that you've checked already opened issues as your bug or feature request might already be in issue list.

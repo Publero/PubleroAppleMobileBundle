@@ -62,7 +62,7 @@ class StoreReceipt
     /**
      * @var \DateTime
      */
-    private $createDate;
+    protected $createDate;
 
     /**
      * @return int
