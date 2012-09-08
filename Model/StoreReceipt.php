@@ -7,7 +7,7 @@ namespace Publero\AppleMobileBundle\Model;
  * Entity uses params described at following url:
  * https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/VerifyingStoreReceipts/VerifyingStoreReceipts.html
  */
-class StoreReceipt
+abstract class StoreReceipt
 {
     /**
      * @var int
@@ -62,7 +62,7 @@ class StoreReceipt
     /**
      * @var \DateTime
      */
-    private $createDate;
+    protected $createDate;
 
     /**
      * @return int
