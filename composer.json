@@ -21,7 +21,8 @@
         "ext-curl": ">=7.10.5"
         "doctrine/doctrine-bundle": "*",
         "symfony/yaml": "*",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "publero/test": "dev-master"
     },
     "require-dev": {
     },

@@ -7,7 +7,7 @@ namespace Publero\AppleMobileBundle\Model;
  * Entity uses params described at following url:
  * https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/VerifyingStoreReceipts/VerifyingStoreReceipts.html
  */
-abstract class StoreReceipt
+class StoreReceipt
 {
     /**
      * @var int

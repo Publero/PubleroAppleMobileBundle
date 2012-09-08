@@ -3,8 +3,6 @@ namespace Publero\AppleMobileBundle\Tests\ReceiptVerifier;
 
 use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier;
-use Publero\AppleMobileBundle\ReceiptVerifier\VerificationConnector;
-use Publero\AppleMobileBundle\ReceiptVerifier\VerificationDataMapper;
 
 class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,7 +12,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
     private $verifier;
 
     /**
-     * @var VerificationConnector
+     * @var Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector
      */
     private $connector;
 
@@ -31,7 +29,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
      */
     private function getConnectorMock()
     {
-        $connector = $this->getMock('Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector', array('makeRequest'), array('http://www.example.com/'));
+        $connector = $this->getMock('Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector', array('doRequest'), array('http://www.example.com/'));
 
         return $connector;
     }
@@ -43,7 +41,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
         $this->connector
             ->expects($this->any())
-            ->method('makeRequest')
+            ->method('doRequest')
             ->will($this->returnValue($responseData))
         ;
 
@@ -57,7 +55,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
         $this->connector
             ->expects($this->any())
-            ->method('makeRequest')
+            ->method('doRequest')
             ->will($this->returnValue($responseData))
         ;
 
@@ -80,7 +78,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
         $this->connector
             ->expects($this->any())
-            ->method('makeRequest')
+            ->method('doRequest')
             ->will($this->returnValue($responseData))
         ;
 
@@ -99,7 +97,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt
+     * @expectedException Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceiptException
      */
     public function testGetStoreReceiptThrowsExceptionIfReceiptDataIsInvalid()
     {
@@ -108,7 +106,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
         $this->connector
             ->expects($this->any())
-            ->method('makeRequest')
+            ->method('doRequest')
             ->will($this->returnValue($responseData))
         ;
 

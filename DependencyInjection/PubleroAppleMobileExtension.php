@@ -29,8 +29,9 @@ class PubleroAppleMobileExtension extends Extension
             $verificationUrl = $verificationUrls['production'];
         }
 
-        $container->setParameter($this->getAlias() . '.store_receipt_class', $config['store_receipt_class']);
-        $container->setParameter($this->getAlias() . '.sandbox', $config['sandbox']);
-        $container->setParameter($this->getAlias() . '.verification_url', $verificationUrl);
+        $alias = $this->getAlias();
+        $container->setParameter($alias . '.store_receipt_class', $config['store_receipt_class']);
+        $container->setParameter($alias . '.sandbox', $config['sandbox']);
+        $container->setParameter($alias . '.verification_url', $verificationUrl);
     }
 }
