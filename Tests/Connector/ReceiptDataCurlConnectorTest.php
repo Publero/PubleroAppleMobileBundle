@@ -15,9 +15,15 @@ class ReceiptDataCurlConnectorTest extends AbstractReceiptDataConnectorTest
         return new ReceiptDataCurlConnector($this->verificationUrl);
     }
 
+    /**
+     * @expectedException Publero\AppleMobileBundle\Connector\Exception\CurlErrorException
+     * @expectedExceptionMessage Couldn't resolve host 'example_THATWILLNEVEREXISTS%^$&.com'
+     * @expectedExceptionCode 6
+     */
     public function testDoRequestThrowsExceptionIfCannotConnectToRemoteHost()
     {
-        $this->markTestIncomplete('I need to find way how to test connection to remote host');
+        $connector = new ReceiptDataCurlConnector('http://example_THATWILLNEVEREXISTS%^$&.com');
+        $connector->doRequest('example');
     }
 
     /**
@@ -26,7 +32,8 @@ class ReceiptDataCurlConnectorTest extends AbstractReceiptDataConnectorTest
      */
     public function testDoRequestThrowsExceptionIfResponseIsEmpty()
     {
-        $this->markTestIncomplete('I need to find way how to make curl to return empty result');
+        $connector = new ReceiptDataCurlConnector('http://example.com/i_do_not_work');
+        $connector->doRequest('example_request_with_empty_response');
     }
 
     public function testGetVerificationUrl()
