@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @author mhlavac
+ * @author Martin Hlaváč <info@mhlavac.net>
  */
 abstract class AbstractStoreReceipt extends StoreReceipt
 {
