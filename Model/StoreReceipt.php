@@ -10,9 +10,9 @@ namespace Publero\AppleMobileBundle\Model;
 class StoreReceipt
 {
     /**
-     * @var int
+     * @var string
      */
-    protected $id;
+    protected $transactionId;
 
     /**
      * @var int
@@ -23,11 +23,6 @@ class StoreReceipt
      * @var string
      */
     protected $productId;
-
-    /**
-     * @var string
-     */
-    protected $transactionId;
 
     /**
      * @var \DateTime
@@ -65,6 +60,22 @@ class StoreReceipt
     protected $createDate;
 
     /**
+     * @return string
+     */
+    public function getTransactionId()
+    {
+        return $this->transactionId;
+    }
+
+    /**
+     * @param string $transactionId
+     */
+    public function setTransactionId($transactionId)
+    {
+        $this->transactionId = $transactionId;
+    }
+
+    /**
      * @return int
      */
     public function getQuantity()
@@ -96,21 +107,6 @@ class StoreReceipt
         $this->productId = $productId;
     }
 
-    /**
-     * @return string
-     */
-    public function getTransactionId()
-    {
-        return $this->transactionId;
-    }
-
-    /**
-     * @param string $transactionId
-     */
-    public function setTransactionId($transactionId)
-    {
-        $this->transactionId = $transactionId;
-    }
 
     /**
      * @return \DateTime

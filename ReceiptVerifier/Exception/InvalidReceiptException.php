@@ -18,6 +18,9 @@ class InvalidReceiptException extends \RuntimeException
         $this->statusCode = $statusCode;
     }
 
+    /**
+     * @return int
+     */
     public function getStatusCode()
     {
         return $this->statusCode;

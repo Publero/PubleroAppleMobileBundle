@@ -39,7 +39,7 @@ class ReceiptVerifier
 
     /**
      * @param string $receiptData
-     * @throws InvalidReceipt
+     * @throws InvalidReceiptException
      * @return \Publero\AppleMobileBundle\Model\StoreReceipt
      */
     public function getStoreReceipt($receiptData)

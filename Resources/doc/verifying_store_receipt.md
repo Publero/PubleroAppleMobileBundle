@@ -1,9 +1,6 @@
 Verifying Store Receipt
 =======================
 
-Work in progress on documentation. I am currently working on unit tests as i have to somehow test connection to appstore verification server.
-Meantime, here are some code snippets:
-
 Code snippet for verifying specific store receipt:
 
 ``` php
