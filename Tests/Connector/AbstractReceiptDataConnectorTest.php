@@ -1,6 +1,9 @@
 <?php
 namespace Publero\AppleMobileBundle\Tests\Connector;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 abstract class AbstractReceiptDataConnectorTest extends \PHPUnit_Framework_TestCase
 {
     /**

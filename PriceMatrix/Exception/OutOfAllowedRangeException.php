@@ -4,7 +4,7 @@ namespace Publero\AppleMobileBundle\PriceMatrix\Exception;
 use Publero\AppleMobileBundle\PriceMatrix\PriceMatrix;
 
 /**
- * @author mhlavac
+ * @author Martin Hlaváč <info@mhlavac.net>
  */
 class OutOfAllowedRangeException extends \Exception
 {

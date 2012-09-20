@@ -2,7 +2,7 @@
 namespace Publero\AppleMobileBundle\Model;
 
 /**
- * @author mhlavac
+ * @author Martin Hlaváč <info@mhlavac.net>
  *
  * Entity uses params described at following url:
  * https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/VerifyingStoreReceipts/VerifyingStoreReceipts.html

@@ -1,5 +1,4 @@
 <?php
-
 namespace Publero\AppleMobileBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -7,6 +6,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()

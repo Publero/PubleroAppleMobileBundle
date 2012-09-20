@@ -4,7 +4,7 @@ namespace Publero\AppleMobileBundle\Tests\PriceMatrix;
 use Publero\AppleMobileBundle\PriceMatrix\EurPriceMatrix;
 
 /**
- * @author mhlavac
+ * @author Martin Hlaváč <info@mhlavac.net>
  */
 class EurPriceMatrixTest extends PriceMatrixTest
 {

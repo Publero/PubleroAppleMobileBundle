@@ -1,6 +1,9 @@
 <?php
 namespace Publero\AppleMobileBundle\ReceiptVerifier\Exception;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class InvalidReceiptException extends \RuntimeException
 {
     /**

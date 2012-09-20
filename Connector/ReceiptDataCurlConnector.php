@@ -4,6 +4,9 @@ namespace Publero\AppleMobileBundle\Connector;
 use Publero\AppleMobileBundle\Connector\Exception\EmptyResponseException;
 use Publero\AppleMobileBundle\Connector\Exception\CurlErrorException;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class ReceiptDataCurlConnector implements ReceiptDataConnectorInterface
 {
     /**

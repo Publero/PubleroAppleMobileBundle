@@ -8,6 +8,9 @@ use Publero\AppleMobileBundle\PriceMatrix\EurPriceMatrix;
 use Publero\AppleMobileBundle\PriceMatrix\CadPriceMatrix;
 use Publero\AppleMobileBundle\PriceMatrix\AudPriceMatrix;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class PriceManager
 {
     /**

@@ -3,6 +3,9 @@ namespace Publero\AppleMobileBundle\Tests\Exception;
 
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceiptException;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class InvalidReceiptExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()

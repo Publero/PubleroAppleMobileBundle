@@ -4,6 +4,9 @@ namespace Publero\AppleMobileBundle\Tests\ReceiptVerifier;
 use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 {
     /**

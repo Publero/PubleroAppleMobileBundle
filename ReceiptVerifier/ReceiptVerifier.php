@@ -8,6 +8,9 @@ use Publero\AppleMobileBundle\Factory\StoreReceiptFactory;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidReceipt;
 use Publero\AppleMobileBundle\ReceiptVerifier\Exception\InvalidResponseData;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class ReceiptVerifier
 {
     /**

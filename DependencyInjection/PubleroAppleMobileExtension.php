@@ -1,5 +1,4 @@
 <?php
-
 namespace Publero\AppleMobileBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -10,6 +9,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class PubleroAppleMobileExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)

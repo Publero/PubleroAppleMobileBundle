@@ -1,7 +1,8 @@
 <?php
 namespace Publero\AppleMobileBundle\PriceMatrix;
+
 /**
- * @author mhlavac
+ * @author Martin Hlaváč <info@mhlavac.net>
  */
 class UsdPriceMatrix extends PriceMatrix
 {

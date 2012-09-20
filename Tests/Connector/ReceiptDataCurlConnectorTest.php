@@ -3,6 +3,9 @@ namespace Publero\AppleMobileBundle\Tests\Connector;
 
 use Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 class ReceiptDataCurlConnectorTest extends AbstractReceiptDataConnectorTest
 {
     /**

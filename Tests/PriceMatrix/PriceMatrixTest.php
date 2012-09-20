@@ -3,6 +3,9 @@ namespace Publero\AppleMobileBundle\Tests\PriceMatrix;
 
 use Publero\AppleMobileBundle\PriceMatrix\PriceMatrix;
 
+/**
+ * @author Martin Hlaváč <info@mhlavac.net>
+ */
 abstract class PriceMatrixTest extends \PHPUnit_Framework_TestCase
 {
     private $testTier = PriceMatrix::TIER_MIN;
