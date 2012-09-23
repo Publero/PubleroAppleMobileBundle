@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         bootstrap="Tests/bootstrap.php"
+>
 
     <testsuites>
-        <testsuite name="PubleroAppleMobileBundle test suite">
-            <directory suffix="Test.php">./Tests</directory>
+        <testsuite name="PubleroAppleMobileBundle testsuite">
+            <directory>./Tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./</directory>
+            <directory>.</directory>
             <exclude>
                 <directory>./Resources</directory>
                 <directory>./Tests</directory>
-                <directory>./vendor</directory>
-                <directory>./Propel/map</directory>
-                <directory>./Propel/om</directory>
             </exclude>
         </whitelist>
     </filter>
