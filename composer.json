@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Martin Hlaváč",
-            "email": "info@mhlavac.net"
+            "email": "info@mhlavac.net",
             "homepage": "http://www.mhlavac.net/"
         },
         {
@@ -27,7 +27,7 @@
     },
     "suggest": {
         "ext-curl": *
-    }
+    },
     "require-dev": {
     },
     "autoload": {
