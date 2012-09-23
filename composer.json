@@ -9,6 +9,7 @@
         {
             "name": "Martin Hlaváč",
             "email": "info@mhlavac.net"
+            "homepage": "http://www.mhlavac.net/"
         },
         {
             "name": "Publero s.r.o. developers",
@@ -18,18 +19,21 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
-        "ext-curl": ">=7.0.0",
-
         "symfony/framework-bundle": ">=2.0.0",
         "symfony/yaml": ">=2.0.0",
         "doctrine/doctrine-bundle": ">=1.0.0",
         "stof/doctrine-extensions-bundle": ">=1.1.x-dev",
         "publero/test": "dev-master"
     },
+    "suggest": {
+        "ext-curl": *
+    }
     "require-dev": {
     },
     "autoload": {
-        "psr-0": { "Publero\\AppleMobileBundle": "" }
+        "psr-0": {
+            "Publero\\AppleMobileBundle": ""
+        }
     },
     "target-dir": "Publero/AppleMobileBundle",
     "extra": {
