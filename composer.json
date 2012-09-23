@@ -26,9 +26,7 @@
         "publero/test": "dev-master"
     },
     "suggest": {
-        "ext-curl": *
-    },
-    "require-dev": {
+        "ext-curl": "*"
     },
     "autoload": {
         "psr-0": {
