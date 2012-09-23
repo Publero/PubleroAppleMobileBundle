@@ -1,6 +1,8 @@
 PubleroAppleMobileBundle
 ========================
 
+[![Build Status](https://secure.travis-ci.org/Publero/PubleroAppleMobileBundle.png?branch=master)](http://travis-ci.org/Publero/PubleroAppleMobileBundle)
+
 The PubleroAppleMobileBundle adds support for verifying InApp purchases and managers for AppStore tiers.
 
 Features:
