@@ -3,14 +3,13 @@ PubleroAppleMobileBundle
 
 [![Build Status](https://secure.travis-ci.org/Publero/PubleroAppleMobileBundle.png?branch=master)](http://travis-ci.org/Publero/PubleroAppleMobileBundle)
 
-The PubleroAppleMobileBundle adds support for verifying InApp purchases and managers for AppStore tiers.
+This bundle provides functionality for veryifying InApp purchases on Apple iOS devices (iPhone and iPad). It also provides managers to work with
+AppStore tiers. You can access AppStore tier in all currencies which Apple supports to this day (you can access both: price and proceed).
 
 Features:
 
 - PriceMatrix managers (for all 6 currencies currently supported by Apple)
 - StoreReceipt verification and handling
-
-**Caution:** This bundle is under development. Not everything is unittested yet and some features are missing (AES crypter for example).
 
 Documentation
 -------------
@@ -22,7 +21,7 @@ Documentation is stored in the `Resources/doc/index.md`
 Installation
 ------------
 
-Steps how to install this bundle are located in [Getting started](Resources/doc/index.md).
+Steps how to install this bundle are located in [Getting started](https://github.com/Publero/PubleroAppleMobileBundle/blob/master/Resources/doc/index.md).
 
 Versioning
 ----------
@@ -34,8 +33,8 @@ License
 
 This bundle is under the MIT license. See the complete license in the bundle:
 
-    [Resources/meta/LICENSE](Resources/doc/index.md)
-    
+[Resources/meta/LICENSE](Resources/doc/index.md)
+
 About
 -----
 

@@ -3,17 +3,20 @@ Getting Started With PubleroAppleMobileBundle
 
 Publero Apple Mobile Bundle provides services for managing AppStore tiers and to validate and store InApp purchases.
 
-## Prerequisites
+Prerequisites
+-------------
 
 Symfony 2.0.x or higher is required. If you are using symfony 2.0.x use this [installation guide](installation_2_0_x.md).
 
-## Installation
+Installation
+------------
 
-### Step 1: Download PubleroAppleMobileBundle
+Step 1: Download PubleroAppleMobileBundle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add FOSUserBundle in your composer.json:
+Add PubleroAppleMobileBundle in your composer.json:
 
-```js
+``` js
 {
     "require": {
         "publero/apple-mobile-bundle": "*"
@@ -21,9 +24,15 @@ Add FOSUserBundle in your composer.json:
 }
 ```
 
+run following command:
+
+``` sh
+composer.phar install
+```
+
 ### Step 2: Enable the bundle
 
-enable the bundle in kernel:
+Enable the bundle in kernel:
 
 ``` php
 <?php
@@ -43,5 +52,6 @@ public function registerBundles()
 That's it you have completed the installation. You can already use PriceMatrixes for defining AppStore tiers. For StoreReceipt
 verifying you need to define your StoreReceipt class.
 
+- [Configuration reference](configuration_reference.md)
 - [Using Price Matrixes](using_price_matrixes.md)
 - [Verifying Store Receipts and creating StoreReceipt classs](verifying_store_receipt.md)

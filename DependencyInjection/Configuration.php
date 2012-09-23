@@ -2,7 +2,6 @@
 namespace Publero\AppleMobileBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -18,7 +17,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('store_receipt_class')->isRequired()->end()
+                ->scalarNode('store_receipt_class')->defaultNull()->end()
                 ->scalarNode('sandbox')->defaultTrue()->end()
             ->end()
         ->end();
