@@ -50,7 +50,7 @@ class PubleroAppleMobileExtension extends Extension
     {
         $verificationUrls = Yaml::parse($this->fileLocator->locate('verification_url.yml'));
         $mode = $this->config['sandbox'] ? 'sandbox' : 'production';
-        $verificationUrl = $this->config[$mode];
+        $verificationUrl = $verificationUrls[$mode];
 
         $this->container->setParameter('publero_apple_mobile.sandbox', $this->config['sandbox']);
         $this->container->setParameter('publero_apple_mobile.verification_url', $verificationUrl);
