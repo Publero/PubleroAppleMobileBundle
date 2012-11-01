@@ -9,7 +9,7 @@ use Publero\AppleMobileBundle\PriceMatrix\Exception\OutOfAllowedRangeException;
 abstract class PriceMatrix
 {
     const TIER_MIN = 1;
-    const TIER_MAX = 85;
+    const TIER_MAX = 87;
 
     /**
      * @var float[]
