@@ -2,15 +2,18 @@ parameters:
     publero_apple_mobile.store_receipt.factory.class: Publero\AppleMobileBundle\Factory\StoreReceiptFactory
     publero_apple_mobile.store_receipt.verifier.class: Publero\AppleMobileBundle\ReceiptVerifier\ReceiptVerifier
     publero_apple_mobile.store_receipt.manager.class: Publero\AppleMobileBundle\Entity\StoreReceiptManager
+    publero_apple_mobile.store_receipt.connector.class: Publero\AppleMobileBundle\Connector\ReceiptDataCurlConnector
 
 services:
+    publero_apple_mobile.store_receipt.verifier:
+        class: %publero_apple_mobile.store_receipt.verifier.class%
+        arguments: [ @publero_apple_mobile.store_receipt.connector, @publero_apple_mobile.store_receipt.factory ]
+
     publero_apple_mobile.store_receipt.factory:
         class: %publero_apple_mobile.store_receipt.factory.class%
         public: false
         arguments: [ %publero_apple_mobile.store_receipt_class% ]
 
-    publero_apple_mobile.store_receipt.verifier:
-        class: %publero_apple_mobile.store_receipt.verifier.class%
-        arguments: [%publero_apple_mobile.verification_url%]
-        calls:
-            - [ setStoreReceiptFactory, [ @publero_apple_mobile.store_receipt.factory ] ]
+    publero_apple_mobile.store_receipt.connector:
+        class: %publero_apple_mobile.store_receipt.connector.class%
+        arguments: [ %publero_apple_mobile.verification_url% ]

@@ -21,7 +21,6 @@ class StoreReceiptFactory
 
     /**
      * @param \stdClass $data
-     * @throws InvalidResponseData
      * @return \Publero\AppleMobileBundle\Model\StoreReceipt
      */
     public function createStoreReceiptFromObject(\stdClass $data)
