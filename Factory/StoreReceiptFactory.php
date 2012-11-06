@@ -26,6 +26,8 @@ class StoreReceiptFactory
     public function createStoreReceiptFromObject(\stdClass $data)
     {
         $storeReceipt = $this->createStoreReceipt();
+
+        $data = $data->receipt;
         $storeReceipt->setQuantity($data->quantity);
         $storeReceipt->setProductId($data->product_id);
         $storeReceipt->setTransactionId($data->transaction_id);
