@@ -50,7 +50,7 @@ class ReceiptVerifier
         $responseData = $this->connector->doRequest($receiptData);
 
         if (!$this->isResponseDataValid($responseData)) {
-            throw new InvalidReceiptException($responseData->receipt->status);
+            throw new InvalidReceiptException($responseData->status);
         }
 
         return $this->storeReceiptFactory->createStoreReceiptFromObject($responseData);
@@ -62,6 +62,6 @@ class ReceiptVerifier
      */
     private function isResponseDataValid(\stdClass $responseData)
     {
-        return $responseData->receipt->status === 0;
+        return $responseData->status === 0;
     }
 }

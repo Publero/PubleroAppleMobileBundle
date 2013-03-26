@@ -39,10 +39,8 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
     public function testIsReceiptDataValidReturnsTrueIfResponseDataIsValid()
     {
-        $receipt = new \stdClass();
-        $receipt->status = 0;
         $responseData = new \stdClass();
-        $responseData->receipt = $receipt;
+        $responseData->status = 0;
 
         $this->connector
             ->expects($this->any())
@@ -55,10 +53,8 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
     public function testIsReceiptDataValidReturnsFalseIfResponseDataIsInvalid()
     {
-        $receipt = new \stdClass();
-        $receipt->status = 1;
         $responseData = new \stdClass();
-        $responseData->receipt = $receipt;
+        $responseData->status = 1;
 
         $this->connector
             ->expects($this->any())
@@ -72,7 +68,6 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
     public function testGetStoreReceipt()
     {
         $receipt = new \stdClass();
-        $receipt->status = 0;
         $receipt->quantity = 1;
         $receipt->product_id = 'example_product';
         $receipt->transaction_id = 'example_transaction';
@@ -85,6 +80,7 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
 
         $responseData = new \stdClass();
         $responseData->receipt = $receipt;
+        $responseData->status = 0;
 
         $this->connector
             ->expects($this->any())
@@ -111,10 +107,8 @@ class ReceiptVerifierTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetStoreReceiptThrowsExceptionIfReceiptDataIsInvalid()
     {
-        $receipt = new \stdClass();
-        $receipt->status = 1;
         $responseData = new \stdClass();
-        $responseData->receipt = $receipt;
+        $responseData->status = 1;
 
         $this->connector
             ->expects($this->any())
