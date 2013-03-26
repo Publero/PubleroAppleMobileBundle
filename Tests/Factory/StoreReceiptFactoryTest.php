@@ -27,29 +27,32 @@ class StoreReceiptFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateStoreReceiptFromObject()
     {
+        $receipt = new \stdClass();
+        $receipt->status = 0;
+        $receipt->quantity = 1;
+        $receipt->product_id = 'example_product';
+        $receipt->transaction_id = 'example_transaction';
+        $receipt->purchase_date = '2012-07-20 10:00:00';
+        $receipt->original_transaction_id = 'example_original_transaction';
+        $receipt->original_purchase_date = '2012-07-20 11:00:00';
+        $receipt->item_id = 'example_item';
+        $receipt->bid = 'bundle';
+        $receipt->bvrs = '1.0.0';
+
         $responseData = new \stdClass();
-        $responseData->status = 0;
-        $responseData->quantity = 1;
-        $responseData->product_id = 'example_product';
-        $responseData->transaction_id = 'example_transaction';
-        $responseData->purchase_date = '2012-07-20 10:00:00';
-        $responseData->original_transaction_id = 'example_original_transaction';
-        $responseData->original_purchase_date = '2012-07-20 11:00:00';
-        $responseData->item_id = 'example_item';
-        $responseData->bid = 'bundle';
-        $responseData->bvrs = '1.0.0';
+        $responseData->receipt = $receipt;
 
         $storeReceipt = $this->factory->createStoreReceiptFromObject($responseData);
 
         $this->assertInstanceOf('\Publero\AppleMobileBundle\Model\StoreReceipt', $storeReceipt);
-        $this->assertEquals($responseData->quantity, $storeReceipt->getQuantity());
-        $this->assertEquals($responseData->product_id, $storeReceipt->getProductId());
-        $this->assertEquals($responseData->transaction_id, $storeReceipt->getTransactionId());
-        $this->assertEquals($responseData->purchase_date, $storeReceipt->getPurchaseDate()->format('Y-m-d H:i:s'));
-        $this->assertEquals($responseData->original_transaction_id, $storeReceipt->getOriginalTransactionId());
-        $this->assertEquals($responseData->original_purchase_date, $storeReceipt->getOriginalPurchaseDate()->format('Y-m-d H:i:s'));
-        $this->assertEquals($responseData->item_id, $storeReceipt->getItemId());
-        $this->assertEquals($responseData->bid, $storeReceipt->getApplicationBundleId());
-        $this->assertEquals($responseData->bvrs, $storeReceipt->getApplicationVersion());
+        $this->assertEquals($receipt->quantity, $storeReceipt->getQuantity());
+        $this->assertEquals($receipt->product_id, $storeReceipt->getProductId());
+        $this->assertEquals($receipt->transaction_id, $storeReceipt->getTransactionId());
+        $this->assertEquals($receipt->purchase_date, $storeReceipt->getPurchaseDate()->format('Y-m-d H:i:s'));
+        $this->assertEquals($receipt->original_transaction_id, $storeReceipt->getOriginalTransactionId());
+        $this->assertEquals($receipt->original_purchase_date, $storeReceipt->getOriginalPurchaseDate()->format('Y-m-d H:i:s'));
+        $this->assertEquals($receipt->item_id, $storeReceipt->getItemId());
+        $this->assertEquals($receipt->bid, $storeReceipt->getApplicationBundleId());
+        $this->assertEquals($receipt->bvrs, $storeReceipt->getApplicationVersion());
     }
 }
