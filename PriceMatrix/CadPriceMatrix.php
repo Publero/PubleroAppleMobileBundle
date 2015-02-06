@@ -42,4 +42,3 @@ class CadPriceMatrix extends UsdPriceMatrix
         ];
     }
 }
-
